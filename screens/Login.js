@@ -42,6 +42,7 @@ const Login = () => {
           <TextInput
             label="Password"
             variant="outlined"
+            secureTextEntry={true}
             value={password}
             onChangeText={setPassword}
           />
