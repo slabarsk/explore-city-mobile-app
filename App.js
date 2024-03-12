@@ -3,13 +3,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Homepage from "./screens/Homepage";
+import AuthProvider, { useAuth } from "./screens/AuthContext"
 
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
-  const isLoggedIn = false;
+  const [user] = useAuth()
 
-  if (!isLoggedIn) {
+  if (!user) {
     return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Register" component={Register} />
@@ -27,9 +28,13 @@ const Navigator = () => {
 const App = () => {
   return (
     <NavigationContainer>
+      <AuthProvider>
       <Navigator />
+      </AuthProvider>
     </NavigationContainer>
   );
 };
+
+
 
 export default App;

@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { View, FlatList, Text, Image, TouchableOpacity } from "react-native";
 
 const cities = [
-  { id: 1, name: "Paris, France", image: "https://example.com/paris.jpg" },
-  { id: 2, name: "London, England", image: "https://example.com/london.jpg" },
-  { id: 3, name: "Rome, Italy", image: "https://example.com/rome.jpg" },
+  { id: 1, name: "Istanbul, Turkiye", image: "https://example.com/paris.jpg" },
+  { id: 2, name: "Ankara, Turkiye", image: "https://example.com/london.jpg" },
+  { id: 3, name: "Izmir, Turkiye", image: "https://example.com/rome.jpg" },
 ];
 
 const Homepage = () => {

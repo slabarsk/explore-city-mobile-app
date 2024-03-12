@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import Logo from "./components/logo";
+import Logo from "./components/Logo";
 import {
   TextInput,
   VStack,
   Text,
   HStack,
   Button,
-  Image,
 } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { useAuth } from "./AuthContext";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const [_, setUser] = useAuth();
+
 
   const handleRegister = () => {
     setIsLoading(true);
@@ -32,10 +34,15 @@ const Register = () => {
         email,
         password,
       },
+    }).then(res => {
+      setUser(res.data);}
+    )
+    .finally(() => {
     })
       .then(() => {
         setIsLoading(false);
-        window.location.href = "/";
+      }).finally(() => {
+        setIsLoading(false);
       })
       .catch((e) => {
         alert(e.message);
@@ -48,13 +55,16 @@ const Register = () => {
     navigation.navigate("Login");
   };
 
+
+
   return (
+    
     <SafeAreaView>
       <Logo />
-      <VStack spacing={4} style={{ padding: 16 }}>
-        <VStack spacing={1}>
-          <Text variant="h5">Register</Text>
-          <Text variant="subtitle1">Create an account & Begin the journey</Text>
+      <VStack spacing={16} style={{ padding: 36 }}>
+        <VStack spacing={6}>
+          <Text variant="h4">Register</Text>
+          <Text variant="subtitle3">Create an account & Begin the journey</Text>
         </VStack>
         <VStack spacing={2}>
           <TextInput
@@ -96,11 +106,12 @@ const Register = () => {
   );
 };
 
+
 const buttonStyle = StyleSheet.create({
   buttonColor: {
     backgroundColor: "#8B00FF",
     color: "#fff",
-  },
-});
+}});
+
 
 export default Register;

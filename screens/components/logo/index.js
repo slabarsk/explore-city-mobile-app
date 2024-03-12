@@ -9,7 +9,7 @@ const Logo = () => {
         height: 100,
         borderRadius: 10,
         margin: "0 auto",
-        marginTop: "4rem",
+        marginTop: "6rem",
       }}
     ></img>
   );
